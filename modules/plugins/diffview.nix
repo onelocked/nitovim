@@ -99,10 +99,13 @@
             local line = vim.trim(vim.fn.getcmdline())
             local bang = line:sub(-1) == '!'
             local base = bang and line:sub(1, -2) or line
-            if base ~= cmd then return cmd end
+            -- Returning `cmd` here would replace the matched "q!"/"wq!" and
+            -- drop the bang, turning :q! into :q (which prompts via 'confirm').
+            local typed = cmd .. (bang and "!" or "")
+            if base ~= cmd then return typed end
 
             local ok, lib = pcall(require, 'diffview.lib')
-            if not ok or not lib.get_current_view() then return cmd end
+            if not ok or not lib.get_current_view() then return typed end
 
             -- Forward the bang so :q! / :wq! force-close past the
             -- unsaved-stage-buffer guard introduced in diffview-plus.
