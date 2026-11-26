@@ -9,28 +9,34 @@
     tack.inputs = {
       nixpkgs.url = "gh:nixos/nixpkgs/nixos-unstable";
       nixvim.url = "gh:nix-community/nixvim";
+      neovim.url = "gh:nix-community/neovim-nightly-overlay";
     };
     perSystem =
-      { pkgs, ... }:
+      { pkgs, inputs', ... }:
       {
-        packages = lib.genAttrs [ "light" "dark" "monochrome" ] (
-          theme:
-          (inputs.nixvim.lib.evalNixvim {
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit (inputs.nixvim.lib.nixvim) mkRaw;
-            };
-            modules = with config.neovim; [
-              core
-              mods
-              visual
-              {
-                nixpkgs = { inherit pkgs; };
-                nito = { inherit theme; };
-              }
-            ];
-          }).config.build.package
-        );
+        packages =
+          lib.genAttrs [ "light" "dark" "monochrome" ] (
+            theme:
+            (inputs.nixvim.lib.evalNixvim {
+              extraSpecialArgs = {
+                inherit inputs;
+                inherit (inputs.nixvim.lib.nixvim) mkRaw;
+              };
+              modules = with config.neovim; [
+                core
+                mods
+                visual
+                {
+                  package = inputs'.neovim.packages.default;
+                  nixpkgs = { inherit pkgs; };
+                  nito = { inherit theme; };
+                }
+              ];
+            }).config.build.package
+          )
+          // {
+            neovim = inputs'.neovim.packages.default;
+          };
       };
   };
   options = {

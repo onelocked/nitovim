@@ -2,6 +2,7 @@
   "$declared": {
     "diffview-plus": "github:dlyongemallo/diffview-plus.nvim/ba05af7a295dcd8449bd03ebb3aead8268a5c379",
     "gist-nvim": "github:rawnly/gist.nvim",
+    "neovim": "github:nix-community/neovim-nightly-overlay",
     "nixpkgs": "github:nixos/nixpkgs/nixos-unstable",
     "nixvim": "github:nix-community/nixvim",
     "opencode-nvim": "github:nickjvandyke/opencode.nvim",
@@ -34,6 +35,14 @@
       "hash": "sha256-0GNnffoViLuUWPh4J0SgBQqhJn+SDD8DdHr/20yziwE=",
       "outHash": "sha256-1If/VwDFHXqCxGphx630k31F/8qXrwJhmwFlwZbVmcM="
     }
+  },
+  "neovim": {
+    "type": "github",
+    "owner": "nix-community",
+    "repo": "neovim-nightly-overlay",
+    "rev": "13cb0050984b90b6bb61d9f88688dd9c86fb164d",
+    "narHash": "sha256-mS2NN60LGMruNQcnQGktboIOSASf7jmFDzUf1cEpnP4=",
+    "lastModified": 1795651354
   },
   "nixpkgs": {
     "type": "github",

@@ -23,6 +23,9 @@ url = "gh:dlyongemallo/diffview-plus.nvim/ba05af7a295dcd8449bd03ebb3aead8268a5c3
 type = "fetch"
 url = "gh:rawnly/gist.nvim"
 
+[inputs.neovim]
+url = "gh:nix-community/neovim-nightly-overlay"
+
 [inputs.nixpkgs]
 url = "gh:nixos/nixpkgs/nixos-unstable"
 
