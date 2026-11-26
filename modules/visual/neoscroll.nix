@@ -17,13 +17,23 @@
           end
 
           require('neoscroll').setup({
-            mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
+            mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-e>', 'zt', 'zz', 'zb'},
             hide_cursor = true,
             stop_eof = false,
             respect_scrolloff = false,
             cursor_scrolls_alone = true,
             easing_function = "linear",
-            post_hook = function()
+            post_hook = function(info)
+              if info and info.centre and vim.w.neoscroll_saved_scrolloff then
+                local height = vim.api.nvim_win_get_height(0)
+                local target = math.min(vim.fn.line('$'), vim.fn.line('w0') + math.floor((height + 1) / 2) - 1)
+                local cur = vim.fn.line('.')
+                if target > cur then
+                  vim.cmd('normal! ' .. (target - cur) .. 'j')
+                elseif target < cur then
+                  vim.cmd('normal! ' .. (cur - target) .. 'k')
+                end
+              end
               if vim.w.neoscroll_saved_scrolloff then
                 vim.wo.scrolloff = vim.w.neoscroll_saved_scrolloff
                 vim.w.neoscroll_saved_scrolloff = nil
@@ -73,6 +83,23 @@
           vim.keymap.set({ 'n', 'x' }, '<C-b>', function()
             scroll_up(function() require('neoscroll').ctrl_b({ duration = 450 }) end)
           end)
+
+          -- Vim's <C-y> only scrolls the view, so the cursor slides off-centre in fake-EOF overscroll; follow it.
+          local function ctrl_y()
+            local height = vim.api.nvim_win_get_height(0)
+            local lines = math.max(1, math.floor(height * 0.1 + 0.5))
+            local opts = { move_cursor = true, duration = 100 }
+            if eof_overscrolled() then
+              -- Only follow with the cursor while the centre row can still hold it.
+              local target = vim.fn.winsaveview().topline - lines + math.floor((height + 1) / 2) - 1
+              opts.move_cursor = target <= vim.fn.line('$')
+              opts.info = { centre = true }
+              vim.w.neoscroll_saved_scrolloff = vim.w.neoscroll_saved_scrolloff or vim.wo.scrolloff
+              vim.wo.scrolloff = 0
+            end
+            require('neoscroll').scroll(-lines, opts)
+          end
+          vim.keymap.set({ 'n', 'x' }, '<C-y>', ctrl_y, { desc = 'Scroll up, keeping the cursor centred' })
 
           -- Re-center after motions that clamp the EOF overscroll.
           local function recenter()
