@@ -52,7 +52,6 @@
       sidescrolloff = 8;
 
       confirm = true;
-      autowrite = true;
       showmode = false;
       wildmode = "longest:full,full";
       wildignorecase = true;
