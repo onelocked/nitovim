@@ -104,7 +104,7 @@
         }
         {
           mode = "n";
-          key = "<s-Left>";
+          key = "<s-h>";
           action = ":BufferLineCyclePrev<cr>";
           options = {
             desc = "Buffer Previous";
@@ -114,7 +114,7 @@
         }
         {
           mode = "n";
-          key = "<s-Right>";
+          key = "<s-l>";
           action = ":BufferLineCycleNext<cr>";
           options = {
             desc = "Buffer Next";
