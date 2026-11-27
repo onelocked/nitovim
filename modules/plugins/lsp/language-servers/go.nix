@@ -7,12 +7,17 @@
           formatters_by_ft.go = [ "gofmt" ];
         };
         lsp.servers.golangci_lint_ls = {
-          enable = true;
+          enable = false;
           package = pkgs.golangci-lint-langserver;
         };
         lsp.servers.gopls = {
-          enable = true;
+          enable = false;
           package = pkgs.gopls;
+          filetypes = [
+            "go"
+            "gomod"
+            "gowork"
+          ];
         };
       };
       extraPackages = with pkgs; [
