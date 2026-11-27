@@ -34,15 +34,9 @@ nix run github:/onelocked/nitovim
 inputs.nitovim.url = "github:onelocked/nitovim";
 ```
 
-**NixOS or Home Manager**
+**NixOS**
 ```nix
-# For NixOS
 environment.packages = [
-  inputs.nitovim.packages.${pkgs.stdenv.hostPlatform.system}.default
-];
-
-# For Home Manager
-home.packages = [
   inputs.nitovim.packages.${pkgs.stdenv.hostPlatform.system}.default
 ];
 ```
