@@ -1,5 +1,5 @@
 {
-  neovim.core = { ... }: {
+  neovim.core = {
     opts = {
       clipboard = "unnamedplus"; # Sync with system clipboard (OSC 52 over SSH)
 
@@ -72,5 +72,16 @@
       incsearch = true;
       hlsearch = true;
     };
+
+    autoCmd = [
+      {
+        event = "FileType";
+        pattern = [
+          "markdown"
+          "json"
+        ];
+        command = "setlocal conceallevel=0";
+      }
+    ];
   };
 }
