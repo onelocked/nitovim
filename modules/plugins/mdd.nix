@@ -24,10 +24,8 @@
               "kitty",
               "@",
               "launch",
-              "--self", -- split nvim's tab, whatever tab is focused
+              "--type=os-window",
               "--keep-focus",
-              "--location=vsplit",
-              "--bias=40",
               "--cwd=" .. vim.fs.dirname(file),
               "mdd",
               file,
