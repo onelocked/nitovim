@@ -2,7 +2,14 @@
   neovim.mods =
     { pkgs, mkRaw, ... }:
     {
-      extraPlugins = [ pkgs.vimPlugins.nvim-silicon ];
+      extraPlugins = [
+        (pkgs.vimPlugins.nvim-silicon.overrideAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            substituteInPlace lua/nvim-silicon/init.lua \
+              --replace-fail 'vim.validate({' 'vim.validate("opts", opts, "table"); local _ = ({'
+          '';
+        }))
+      ];
 
       extraConfigLua = # lua
         ''

@@ -30,6 +30,10 @@
                   package = inputs'.neovim.packages.default;
                   nixpkgs = { inherit pkgs; };
                   nito = { inherit theme; };
+                  withPython3 = true;
+                  withRuby = false;
+                  withNodeJs = false;
+                  withPerl = false;
                 }
               ];
             }).config.build.package

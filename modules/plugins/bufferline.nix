@@ -1,9 +1,15 @@
 {
   neovim.mods =
-    { config, ... }:
+    { config, pkgs, ... }:
     {
       plugins.bufferline = {
         enable = true;
+        package = pkgs.vimPlugins.bufferline-nvim.overrideAttrs (old: {
+          postPatch = (old.postPatch or "") + ''
+            substituteInPlace lua/bufferline/highlights.lua \
+              --replace-fail 'vim.F.if_nil' 'vim.nonnil'
+          '';
+        });
         settings = {
           options = {
             diagnostics = "nvim_lsp";

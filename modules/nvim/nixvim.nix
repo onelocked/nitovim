@@ -45,7 +45,7 @@
             lib.nixvim.mkRaw # lua
               ''
                 function()
-                  vim.highlight.on_yank()
+                  vim.hl.hl_op()
                 end
               '';
         }
