@@ -78,6 +78,7 @@
           vim.opt.title = true
           vim.opt.titlestring = "nvim - %F%( %M%)"
           vim.diagnostic.config({ float = { border = "single" } })
+          vim.lsp.log.set_level("off")
 
           vim.opt.whichwrap:append("<>[]hl")
           vim.opt.listchars:append("space:·")
