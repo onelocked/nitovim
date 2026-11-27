@@ -4,7 +4,6 @@
 <br>
 
 ## Screenshots
-<br>
 
 **Dashboard**
 
@@ -25,25 +24,25 @@
 
 # Run
 ```nix
-nix run github:/onelocked/vimmax
+nix run github:/onelocked/nitovim
 ```
 # Installation
 
-**Add vimmax as a flake input**
+**Add nitovim as a flake input**
 ```nix
 # In your flake.nix
-inputs.vimmax.url = "github:onelocked/vimmax";
+inputs.nitovim.url = "github:onelocked/nitovim";
 ```
 
 **NixOS or Home Manager**
 ```nix
 # For NixOS
 environment.packages = [
-  inputs.vimmax.packages.${pkgs.stdenv.hostPlatform.system}.default
+  inputs.nitovim.packages.${pkgs.stdenv.hostPlatform.system}.default
 ];
 
 # For Home Manager
 home.packages = [
-  inputs.vimmax.packages.${pkgs.stdenv.hostPlatform.system}.default
+  inputs.nitovim.packages.${pkgs.stdenv.hostPlatform.system}.default
 ];
 ```
