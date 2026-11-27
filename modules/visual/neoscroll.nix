@@ -16,6 +16,20 @@
             return vim.fn.winsaveview().topline > max_topline
           end
 
+          -- A high scrolloff makes Vim clamp the fake overscroll back to the last
+          -- real line on every text change; hold it at 0 until the overscroll is gone.
+          local function sync_eof_scrolloff()
+            if eof_overscrolled() then
+              if not vim.w.eof_saved_scrolloff then
+                vim.w.eof_saved_scrolloff = vim.wo.scrolloff
+                vim.wo.scrolloff = 0
+              end
+            elseif vim.w.eof_saved_scrolloff then
+              vim.wo.scrolloff = vim.w.eof_saved_scrolloff
+              vim.w.eof_saved_scrolloff = nil
+            end
+          end
+
           require('neoscroll').setup({
             mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>', '<C-e>', 'zt', 'zz', 'zb'},
             hide_cursor = true,
@@ -38,6 +52,7 @@
                 vim.wo.scrolloff = vim.w.neoscroll_saved_scrolloff
                 vim.w.neoscroll_saved_scrolloff = nil
               end
+              sync_eof_scrolloff()
               eof_state[vim.api.nvim_get_current_win()] = eof_overscrolled()
             end,
           })
@@ -120,15 +135,22 @@
             eof_state[win] = eof_overscrolled()
           end
 
+          vim.api.nvim_create_autocmd('WinScrolled', {
+            callback = sync_eof_scrolloff,
+          })
+
           vim.api.nvim_create_autocmd('CursorMoved', {
             callback = function()
               local win = vim.api.nvim_get_current_win()
               local was_overscrolled = eof_state[win]
-              if eof_overscrolled() then
+              local over = eof_overscrolled()
+              sync_eof_scrolloff()
+              if over then
                 eof_state[win] = true
               elseif was_overscrolled then
                 eof_state[win] = false
                 recenter()
+                sync_eof_scrolloff()
               else
                 eof_state[win] = false
               end
