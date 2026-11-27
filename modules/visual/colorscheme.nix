@@ -208,6 +208,16 @@
           vim.api.nvim_set_hl(0, "GitSignsDelete",          { fg = c.error,            bg = "NONE" })
           vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame",{ fg = c.line_nr,          italic = true })
 
+          vim.api.nvim_set_hl(0, "GitSignsAddLn",           { link = "DiffviewNewLine" })
+          vim.api.nvim_set_hl(0, "GitSignsChangeLn",        { link = "DiffviewNewLine" })
+          vim.api.nvim_set_hl(0, "GitSignsDeleteLn",        { link = "DiffviewOldLine" })
+          vim.api.nvim_set_hl(0, "GitSignsDeleteVirtLn",    { link = "DiffviewOldLine" })
+          vim.api.nvim_set_hl(0, "GitSignsAddInline",       { link = "DiffviewNewText" })
+          vim.api.nvim_set_hl(0, "GitSignsChangeInline",    { link = "DiffviewNewText" })
+          vim.api.nvim_set_hl(0, "GitSignsDeleteInline",    { link = "DiffviewOldText" })
+          vim.api.nvim_set_hl(0, "GitSignsAddPreview",      { link = "DiffviewNewLine" })
+          vim.api.nvim_set_hl(0, "GitSignsDeletePreview",   { link = "DiffviewOldLine" })
+
           -- ── Which-key ────────────────────────────────────────────────────────────────
           vim.api.nvim_set_hl(0, "WhichKey",                { fg = c.variable })
           vim.api.nvim_set_hl(0, "WhichKeyGroup",           { fg = c.fn })
