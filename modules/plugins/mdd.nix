@@ -38,6 +38,19 @@
             mdd_panes[file] = tonumber(res.stdout)
           end
 
+          -- Close the preview when its buffer leaves the current window.
+          vim.api.nvim_create_autocmd("BufLeave", {
+            callback = function(args)
+              local file = vim.api.nvim_buf_get_name(args.buf)
+              local id = mdd_panes[file]
+              if not id then
+                return
+              end
+              mdd_panes[file] = nil
+              vim.fn.jobstart({ "kitty", "@", "close-window", "-m", "id:" .. id }, { detach = true })
+            end,
+          })
+
           -- Leave no stale pane behind when the editor quits.
           vim.api.nvim_create_autocmd("VimLeavePre", {
             callback = function()
