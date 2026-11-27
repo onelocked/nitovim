@@ -59,6 +59,13 @@
       extraLuaPackages = lp: with lp; [ luarocks ];
       extraConfigLua = # lua
         ''
+          -- nixvim runs this config from the store, not $XDG_CONFIG_HOME/nvim;
+          -- set $MYVIMRC so :checkhealth Configuration and :edit $MYVIMRC work.
+          local config_file = debug.getinfo(1, "S").source:gsub("^@", "")
+          if vim.fn.filereadable(config_file) == 1 then
+            vim.env.MYVIMRC = config_file
+          end
+
            -- ssh
           if vim.env.SSH_CONNECTION or vim.env.SSH_CLIENT or vim.env.SSH_TTY then
             local osc52 = require("vim.ui.clipboard.osc52")
