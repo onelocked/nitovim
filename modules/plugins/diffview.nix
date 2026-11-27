@@ -1,6 +1,6 @@
 {
   tack.inputs.diffview-plus = {
-    url = "gh:dlyongemallo/diffview-plus.nvim/ba05af7a295dcd8449bd03ebb3aead8268a5c379"; # NOTE: pinned rev because rev 22a293181f6132d175efbbf279c251d7f01d1e8b breaks folding for me in file history
+    url = "gh:dlyongemallo/diffview-plus.nvim";
     type = "fetch";
   };
   neovim.mods =

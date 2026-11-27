@@ -17,7 +17,7 @@ recomposable = true
 
 [inputs.diffview-plus]
 type = "fetch"
-url = "gh:dlyongemallo/diffview-plus.nvim/ba05af7a295dcd8449bd03ebb3aead8268a5c379"
+url = "gh:dlyongemallo/diffview-plus.nvim"
 
 [inputs.gist-nvim]
 type = "fetch"

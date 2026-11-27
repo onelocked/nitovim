@@ -1,6 +1,6 @@
 {
   "$declared": {
-    "diffview-plus": "github:dlyongemallo/diffview-plus.nvim/ba05af7a295dcd8449bd03ebb3aead8268a5c379",
+    "diffview-plus": "github:dlyongemallo/diffview-plus.nvim",
     "gist-nvim": "github:rawnly/gist.nvim",
     "neovim": "github:nix-community/neovim-nightly-overlay",
     "nixpkgs": "github:nixos/nixpkgs/nixos-unstable",
@@ -12,9 +12,13 @@
     "type": "github",
     "owner": "dlyongemallo",
     "repo": "diffview-plus.nvim",
-    "rev": "ba05af7a295dcd8449bd03ebb3aead8268a5c379",
-    "narHash": "sha256-sDsHjvQRpPRk6HCUU2mtdqkzH9uJ0ccZjk7Y9HUVWvI=",
-    "lastModified": 1788720452
+    "rev": "5e8ea53418336be4b9a10600318cae8749063fdb",
+    "narHash": "sha256-kY9mLbSKq+V3omuemjSeLrNgcDcmNxdJD7zjPMOHJf0=",
+    "lastModified": 1795512829,
+    "archive": {
+      "hash": "sha256-eMMQJItbQk8oUC6S3hwnsuNRAiUcNOB05/e0kf6tm/A=",
+      "outHash": "sha256-SJD6G4PUT0nQh+pObSQ700302AFr8x4bL4hQWu7Fyp4="
+    }
   },
   "flake-parts": {
     "type": "github",
