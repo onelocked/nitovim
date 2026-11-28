@@ -23,6 +23,10 @@ url = "gh:dlyongemallo/diffview-plus.nvim"
 type = "fetch"
 url = "gh:rawnly/gist.nvim"
 
+[inputs.grug-far]
+type = "fetch"
+url = "gh:MagicDuck/grug-far.nvim"
+
 [inputs.neovim]
 url = "gh:nix-community/neovim-nightly-overlay"
 

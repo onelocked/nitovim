@@ -2,6 +2,7 @@
   "$declared": {
     "diffview-plus": "github:dlyongemallo/diffview-plus.nvim",
     "gist-nvim": "github:rawnly/gist.nvim",
+    "grug-far": "github:MagicDuck/grug-far.nvim",
     "neovim": "github:nix-community/neovim-nightly-overlay",
     "nixpkgs": "github:nixos/nixpkgs/nixos-unstable",
     "nixvim": "github:nix-community/nixvim",
@@ -38,6 +39,18 @@
     "archive": {
       "hash": "sha256-0GNnffoViLuUWPh4J0SgBQqhJn+SDD8DdHr/20yziwE=",
       "outHash": "sha256-1If/VwDFHXqCxGphx630k31F/8qXrwJhmwFlwZbVmcM="
+    }
+  },
+  "grug-far": {
+    "type": "github",
+    "owner": "MagicDuck",
+    "repo": "grug-far.nvim",
+    "rev": "91b7e58b6ffc6ddad5acb7a7c1df21257724449e",
+    "narHash": "sha256-sSUaiGSMKE8UcTybt/zFZd5tOPjK8gXVxyI/LEgfnBk=",
+    "lastModified": 1792621172,
+    "archive": {
+      "hash": "sha256-lXcaG7XZA6rUzoiA2AGt/W1owSvGAFAA6+rlxrSz9WU=",
+      "outHash": "sha256-evC4SmcqwHDUomHXTdyMuCc6oEIcLE4QAanKLgus8IY="
     }
   },
   "neovim": {
